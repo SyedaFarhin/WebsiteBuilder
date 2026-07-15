@@ -16,13 +16,15 @@ app.post("/api/stripe/webhook",express.raw({type:"application/json"}),stripeWebh
 const port=process.env.PORT || 5000
 app.use(express.json())
 app.use(cookieParser())
-app.use cors({
+app.use(
+  cors({
     origin: [
       "http://localhost:5173",
       "https://websitebuilder-frontend-pxc5.onrender.com",
     ],
     credentials: true,
   })
+);
 app.use("/api/auth",authRouter)
 app.use("/api/user",userRouter)
 app.use("/api/website",websiteRouter)
